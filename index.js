@@ -8,8 +8,9 @@ const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster
 console.log(uri);
 const app = express()
 app.use(cors())
+app.use(bodyParser.json())
 
-const port = 5000
+const port = 5000;
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
@@ -24,9 +25,10 @@ client.connect(err => {
       console.log(appointment);
       appointmentCollection.insertOne(appointment)
       .then(result=>{
-          res.send(result.insertedCount)
+          res.send(result.insertedCount>0)
+          console.log(result);
       })
   })
 });
 
-app.listen(process.env.PORT||port)
+app.listen(process.env.PORT||port) 
