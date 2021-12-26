@@ -25,8 +25,8 @@ client.connect(err => {
       console.log(appointment);
       appointmentCollection.insertOne(appointment)
       .then(result=>{
-          res.send(result.insertedCount>0)
-          console.log(result);
+        console.log(result);
+          res.send(result.acknowledged)
       })
   })
 });
