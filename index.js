@@ -29,6 +29,15 @@ client.connect(err => {
           res.send(result.acknowledged)
       })
   })
+        // appointmentsByDate 
+        app.post('/appointmentsByDate',(req,res)=>{
+          const date=req.body;
+          console.log(date.date);
+          appointmentCollection.find({date:date.date})
+          .toArray((err,documents)=>{
+            res.send(documents)
+          })
+      })
 });
 
 app.listen(process.env.PORT||port) 
