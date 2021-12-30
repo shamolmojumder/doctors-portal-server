@@ -29,7 +29,11 @@ client.connect(err => {
           res.send(result.acknowledged)
       })
   })
-        // appointmentsByDate 
+      //  allPatient
+      app.get('/allPatient',(req,res)=>{
+        
+      })
+      // appointmentsByDate 
         app.post('/appointmentsByDate',(req,res)=>{
           const date=req.body;
           console.log(date.date);
