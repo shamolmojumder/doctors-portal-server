@@ -44,6 +44,7 @@ client.connect(err => {
             res.send(documents)
           })
       })
+      // add a doctor
       app.post('/addADoctor',(req,res)=>{
         const file=req.files.file;
         const name=req.files.name;
