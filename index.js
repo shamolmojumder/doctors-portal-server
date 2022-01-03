@@ -7,6 +7,7 @@ require('dotenv').config()
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.4xoys.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 console.log(uri);
+
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
@@ -15,7 +16,8 @@ app.use(fileUpload());
 const port = 5000;
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  console.log('Hello World! from doctor portal server');
+  res.send('Hello World! from doctor portal server')
 })
 
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -32,9 +34,9 @@ client.connect(err => {
       })
   })
       //  allPatient
-      app.get('/allPatient',(req,res)=>{
+      // app.get('/allPatient',(req,res)=>{
         
-      })
+      // })
       // appointmentsByDate 
       app.post('/appointmentsByDate',(req,res)=>{
           const date=req.body;
@@ -44,6 +46,7 @@ client.connect(err => {
             res.send(documents)
           })
       })
+      
       // add a doctor
       app.post('/addADoctor',(req,res)=>{
         const file=req.files.file;
