@@ -9,14 +9,15 @@ const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster
 console.log(uri);
 
 const app = express();
-app.use(cors());
 app.use(bodyParser.json());
+app.use(cors());
+
 app.use(express.static('doctors'));
 app.use(fileUpload());
 const port = 5000;
 
 app.get('/', (req, res) => {
-  console.log('Hello World! from doctor portal server');
+  console.log('Server running');
   res.send('Hello World! from doctor portal server')
 })
 
@@ -50,9 +51,16 @@ client.connect(err => {
       // add a doctor
       app.post('/addADoctor',(req,res)=>{
         const file=req.files.file;
-        const name=req.files.name;
-        const email=req.files.email;
+        const name=req.body.name;
+        const email=req.body.email;
         console.log(name,email,file);
+        // file.mv(`${__dirname}/doctos/${file.name}`,err=>{
+        //   if (err) {
+        //     console.log(err);
+        //     return res.status(500).send({msg:'Failed to upload'})
+        //   }
+        //   return res.send({name:file.name,path:`/${file.name}`})
+        // })
       })
 });
 
