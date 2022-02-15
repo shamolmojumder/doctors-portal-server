@@ -48,6 +48,7 @@ client.connect(err => {
           })
       })
       
+      
       // add a doctor
       app.post('/addADoctor',(req,res)=>{
         const file=req.files.file;
